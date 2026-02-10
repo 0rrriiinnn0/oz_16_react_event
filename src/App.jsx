@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import TodoInput from "./TodoInput.jsx";
 
@@ -6,12 +6,19 @@ import TodoInput from "./TodoInput.jsx";
 function App() {
   const [todos, setTodos] = useState([]);
 
+  useEffect(() => {
+    console.log(todos);
+  }, [todos]);
+
   return (
     <div className="App">
       <h1>TodoList</h1>
-      <TodoInput /> {/* 1단계: 컴포넌트 불러오기 */}
+      <TodoInput setTodos={setTodos} todos={todos} />{" "}
+      {/* setTodos를 TodoInput에 넘김 */}
       <ul>
-        <li>할 일 1</li>
+        {todos.map((item) => (
+          <li key={item.id}>{item.todo}</li>
+        ))}
       </ul>
     </div>
   );
