@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function TodoInput({ setTodos }) {
+function TodoInput({ setTodos, todos }) {
   const [inputValue, setInputValue] = useState("");
+  const newArr = [
+    ...todos,
+    { id: todos.length, todo: inputValue, isComplete: false },
+  ];
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -10,14 +14,7 @@ function TodoInput({ setTodos }) {
   const handleAddClick = () => {
     if (inputValue.trim() === "") return;
 
-    setTodos((prevTodos) => [
-      ...prevTodos,
-      {
-        id: prevTodos.length,
-        todo: inputValue,
-        isComplete: false,
-      },
-    ]);
+    setTodos(newArr);
 
     setInputValue("");
   };
