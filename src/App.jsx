@@ -9,9 +9,11 @@ function App() {
   return (
     <div className="App">
       <h1>TodoList</h1>
-      <TodoInput /> {/* 1단계: 컴포넌트 불러오기 */}
+      <TodoInput setTodos={setTodos} /> {/* setTodos를 TodoInput에 넘김 */}
       <ul>
-        <li>할 일 1</li>
+        {todos.map((item) => (
+          <li key={item.id}>{item.todo}</li>
+        ))}
       </ul>
     </div>
   );
