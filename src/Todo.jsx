@@ -9,9 +9,8 @@ function Todo() {
 
   // 삭제 함수 정의: 여기서 id를 받아 필터링
   const handleDeleteButtonClick = (id) => {
-    setTodos(todos.filter((item) => item.id !== id));
+    setTodos((prev) => prev.filter((item) => item.id !== id));
   };
-
   useEffect(() => {
     console.log("데이터 변경됨:", todos);
   }, [todos]);
